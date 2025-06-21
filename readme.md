@@ -40,3 +40,7 @@ root
 GRANT ALL PRIVILEGES ON *.* TO 'user'@'%' IDENTIFIED BY 'password';
 FLUSH PRIVILEGES;
 ```
+
+## mail
+
+http://localhost:8025/
