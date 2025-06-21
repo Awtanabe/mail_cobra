@@ -7,6 +7,7 @@ import (
 )
 
 func main() {
+
 	m := mailer.NewMailer(
 		"mailhog",
 		1025,

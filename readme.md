@@ -29,3 +29,14 @@ https://github.com/spf13/cobra/blob/main/site/content/user_guide.md#working-with
 ```
 docker-compose exec app sh
 ```
+
+## db 権限
+
+
+```
+mysql -u root -p
+root
+
+GRANT ALL PRIVILEGES ON *.* TO 'user'@'%' IDENTIFIED BY 'password';
+FLUSH PRIVILEGES;
+```

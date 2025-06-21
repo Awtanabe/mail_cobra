@@ -5,6 +5,8 @@ package cmd
 
 import (
 	"fmt"
+	db "mail_cobra/db/connection"
+	"mail_cobra/usecases"
 
 	"github.com/spf13/cobra"
 )
@@ -19,8 +21,14 @@ and usage of using your command. For example:
 Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
+	PreRun: func(cmd *cobra.Command, args []string) {
+		fmt.Println("PreRun")
+		db.SetUp()
+	},
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("BulkMail called")
+		db := db.GetDB()
+
+		usecases.NewSendMailUsecase(db).Execute()
 	},
 }
 

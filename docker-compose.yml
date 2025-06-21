@@ -5,13 +5,23 @@ services:
     tty: true
     volumes:
       - .:/app
-    # depends_on:
-    #   - mysql
+    depends_on:
+      - db
+    env_file:
+      - ./db/.env
     ports:
       - 8000:8000
-
   mailhog:
     image: mailhog/mailhog:latest
     ports:
       - "8025:8025" # MailhogのWebとAPI用のポート
       - "1025:1025" # SMTPポート
+  db:
+    image: mysql:8.0
+    env_file:
+      - ./db/.env
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
+volumes:
+  db-data:
